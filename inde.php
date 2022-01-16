@@ -83,6 +83,7 @@ if (isset($_POST['search'])) {
             ?> ago</small>
         </div>
     </div>
+
 </div>
             </div>
 <?php
