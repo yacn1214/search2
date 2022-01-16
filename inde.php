@@ -2,6 +2,7 @@
 include "db.php";
 $db = new db;
 ?>
+
 <!doctype html>
 <html lang="en">
 <head>
