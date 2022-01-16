@@ -13,7 +13,11 @@ $db = new db;
     <title>Search Site Free ...</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-
+    <style>
+        body{
+            padding:20px;
+        }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -50,11 +54,38 @@ if (isset($_POST['search'])) {
     $se= $_POST['text'];
     $db = new db;
     foreach($db->search($se) as $ok){
-        echo "title >> " . $ok['title']."<br>";
-        echo "link >> ". $ok['link']."<br>";
-        echo "category >> ". $ok['cat']."<br>";
-        echo "caption >> ". $ok['caption']."<br>";
-        echo "date >> ". $ok['date']."<br>"."<br>"."<br>"."<br>"."<br>";
+
+?>
+            <div style="display: inline-flex ">
+<div class="card" style="width: 18rem;">
+    <img src="https://is3-ssl.mzstatic.com/image/thumb/Purple116/v4/48/94/3d/48943d38-4843-7014-8eed-ea6963b02ee7/AppIcon-0-1x_U007emarketing-0-7-0-85-220.png/1200x630wa.png" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title"><?php echo $ok['title'] ?></h5>
+        <p class="card-text"><?php echo $ok['caption'] ?></p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><?php echo $ok['cat'] ?></li>
+        <li class="list-group-item">about</li>
+        <li class="list-group-item">about2</li>
+    </ul>
+    <div class="card-body">
+        <a href=<?php echo $ok['link'] ?> class="card-link">Download link</a>
+        <a href="https://t.me/yacn1414" class="card-link">author</a>
+        <br>
+        <br>
+        <div class="card-footer">
+            <small class="text-muted">Last updated <?php
+                $d=(int) date('Ymd');
+                $dd=$ok['date'];
+                $ddd=explode("-",$dd);
+                $dbf=(int)($ddd[0].$ddd[1].$ddd[2]);
+                echo $d-$dbf ." day";
+            ?> ago</small>
+        </div>
+    </div>
+</div>
+            </div>
+<?php
     }
 }
 ?>
